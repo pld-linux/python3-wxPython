@@ -1,0 +1,16 @@
+--- wxPython-4.2.1/buildtools/config.py~	2023-06-07 03:31:16.000000000 +0200
++++ wxPython-4.2.1/buildtools/config.py	2023-09-23 15:54:38.240951323 +0200
+@@ -228,13 +228,6 @@
+ 
+             self.cflags = self.getWxConfigValue('--cflags').split()
+             self.cxxflags = self.getWxConfigValue('--cxxflags').split()
+-            if self.debug:
+-                for lst in [self.cflags, self.cxxflags]:
+-                    lst.append('-ggdb')
+-                    lst.append('-O0')
+-            else:
+-                for lst in [self.cflags, self.cxxflags]:
+-                    lst.append('-O3')
+ 
+             lflags = self.getWxConfigValue('--libs')
+             self.MONOLITHIC = (lflags.find("_xrc") == -1)
