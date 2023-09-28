@@ -3,7 +3,7 @@ Summary:	Cross platform GUI toolkit for Python
 Summary(pl.UTF-8):	Wieloplatformowe narzędzie GUI dla Pythona
 Name:		python3-%{module}
 Version:	4.2.1
-Release:	1
+Release:	2
 License:	wxWindows Library Licence 3.1 (LGPL v2+ with exception)
 Group:		Libraries/Python
 Source0:	https://files.pythonhosted.org/packages/source/w/%{module}/%{module}-%{version}.tar.gz
@@ -99,6 +99,13 @@ rm -f $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}/samples/embedded/embedde
 install -d $RPM_BUILD_ROOT%{_datadir}
 %{__mv} $RPM_BUILD_ROOT%{py3_sitedir}/wx/locale $RPM_BUILD_ROOT%{_datadir}
 ln -sfr $RPM_BUILD_ROOT%{_localedir} $RPM_BUILD_ROOT%{py3_sitedir}/wx/locale
+
+# remove unsupported locale
+%{__rm} -r $RPM_BUILD_ROOT/usr/share/locale/co
+# fix incorrect locales
+%{__mv} $RPM_BUILD_ROOT/usr/share/locale/fa{_IR,}
+%{__mv} $RPM_BUILD_ROOT/usr/share/locale/gl{_ES,}
+%{__mv} $RPM_BUILD_ROOT/usr/share/locale/ko{_KR,}
 
 %find_lang wxstd
 
