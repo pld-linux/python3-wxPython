@@ -2,12 +2,12 @@
 Summary:	Cross platform GUI toolkit for Python
 Summary(pl.UTF-8):	Wieloplatformowe narzędzie GUI dla Pythona
 Name:		python3-%{module}
-Version:	4.2.1
-Release:	2
+Version:	4.2.2
+Release:	1
 License:	wxWindows Library Licence 3.1 (LGPL v2+ with exception)
 Group:		Libraries/Python
 Source0:	https://files.pythonhosted.org/packages/source/w/%{module}/%{module}-%{version}.tar.gz
-# Source0-md5:	e62c5bd836d2a9dcb6e955509715b157
+# Source0-md5:	962fdea7ec4f93b59d17783d03eecf3a
 Source1:	%{name}-wxversion-null.py
 Patch0:		%{name}-CFLAGS.patch
 URL:		https://wxpython.org/
@@ -90,16 +90,20 @@ WX_CONFIG=%{_bindir}/wx-gtk3-unicode-config \
 
 cp -p %{SOURCE1} $RPM_BUILD_ROOT%{py3_sitedir}/wxversion.py
 
-install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
-cp -a demo samples $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
-rm -f $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}/samples/embedded/embedded
-rm -f $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}/samples/embedded/embedded.o
-
-%{__mv} $RPM_BUILD_ROOT%{py3_sitedir}/wx/lib/editor/README.txt README.editor.txt
-
 install -d $RPM_BUILD_ROOT%{_datadir}
 %{__mv} $RPM_BUILD_ROOT%{py3_sitedir}/wx/locale $RPM_BUILD_ROOT%{_datadir}
 ln -sfr $RPM_BUILD_ROOT%{_localedir} $RPM_BUILD_ROOT%{py3_sitedir}/wx/locale
+
+%{__mv} $RPM_BUILD_ROOT%{py3_sitedir}/wx/lib/editor/README.txt README.editor.txt
+
+%{__rm} $RPM_BUILD_ROOT%{py3_sitedir}/wx/lib/pdfviewer/bitmaps/ReadMe.txt
+%{__rm} $RPM_BUILD_ROOT%{py3_sitedir}/wx/lib/plot/{CHANGELOG,README}.md
+%{__rm} -r $RPM_BUILD_ROOT%{py3_sitedir}/wx/lib/plot/examples
+%{__rm} $RPM_BUILD_ROOT%{py3_sitedir}/wx/lib/pubsub/{LICENSE_BSD_Simple,README_WxPython,RELEASE_NOTES}.txt
+%{__rm} -r $RPM_BUILD_ROOT%{py3_sitedir}/wx/py/tests
+
+install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
+cp -a demo samples $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
 # remove unsupported locale
 %{__rm} -r $RPM_BUILD_ROOT/usr/share/locale/co
