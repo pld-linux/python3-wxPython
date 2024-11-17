@@ -10,18 +10,18 @@ Source0:	https://files.pythonhosted.org/packages/source/w/%{module}/%{module}-%{
 # Source0-md5:	e62c5bd836d2a9dcb6e955509715b157
 Source1:	%{name}-wxversion-null.py
 Patch0:		%{name}-CFLAGS.patch
-URL:		http://wxpython.org/
+URL:		https://wxpython.org/
 BuildRequires:	gtk+3-devel >= 3.0
 BuildRequires:	pkgconfig
-BuildRequires:	python3 >= 1:2.5
-BuildRequires:	python3-devel >= 1:2.5
-BuildRequires:	python3-modules
+BuildRequires:	python3 >= 1:3.7
+BuildRequires:	python3-devel >= 1:3.7
+BuildRequires:	python3-modules >= 1:3.7
 BuildRequires:	rpm-build >= 4.6
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.714
 BuildRequires:	wxGTK3-unicode-gl-devel >= 3.2
 # optional: gstreamer 1.7.2
-Requires:	python3-modules
+Requires:	python3-modules >= 1:3.7
 Requires:	wxGTK3-unicode-gl >= 3.2
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
