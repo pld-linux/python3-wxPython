@@ -64,7 +64,7 @@ Przykładowe programy w wxPythonie.
 
 %prep
 %setup -q -n %{module}-%{version}
-%patch0 -p1
+%patch -P 0 -p1
 
 %{__sed} -E -i -e '1s,#!\s*/usr/bin/env\s+python(\s|$),#!%{__python3}\1,' \
 	demo/*.py \
